@@ -1,95 +1,75 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client"
+import "./globals.css";
+import Header from "./Header";
+import Footer from "./Footer";
+import Movie_add from "@/Movie_add";
+import React, { useState } from 'react';
+import {movie_datas} from "./data.js";
+import Movie_row from "./Movie_row";
+import Counter from "./Counter";
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const Page = () => {
+const [movies, setMovies] = useState(movie_datas)
+const handleDeleteBtn = (movieId) => {
+    const updatedMovies = movies.filter(movie => movie.id !== movieId);
+    setMovies(updatedMovies);
+  };
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+const [count, setCount] = useState([]);
+const handleLike=(moviesId)=>{
+  setCount((prevMovies)=>
+    prevMovies.map((runu)=>
+      runu.id === moviesId ?{...runu,likes:runu.likes + 1}  :runu
+    )
   )
 }
+const handleDislike=(moviesId)=>{
+  setCount((prevMovies)=>
+    prevMovies.map((runu)=>
+      runu .id ===moviesId ? {...runu,dislikes:runu.dislikes} :runu
+    )
+  )
+
+}
+
+// const increment = (id) => {
+//     const newcount={...count}
+//       setCount();
+//     };
+// const decrement = (id) => {
+// const newcount={...count}
+//     setCount();
+//     }
+//   };
+
+
+  return (
+    <div>
+        <Header/>
+            {movies.map(movie => (
+                <Movie_row
+                    title={movie.title}
+                    desc={movie.desc}
+                    image={movie.img}
+                    year={movie.year}
+                    vote={movie.count}
+                    onDelete={() => handleDeleteBtn(movie.id)}
+                />
+                
+            ))}
+            
+            {/* {runu.map((hlo)=>
+              Likes={hlo.likes}
+            )} */}
+
+           
+        <Movie_add/>
+        <Footer/>
+    </div>  
+  );
+};
+export default Page;
+
+ 
