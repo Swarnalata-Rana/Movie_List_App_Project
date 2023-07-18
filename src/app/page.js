@@ -6,45 +6,38 @@ import Movie_add from "@/Movie_add";
 import React, { useState } from 'react';
 import {movie_datas} from "./data.js";
 import Movie_row from "./Movie_row";
-import Counter from "./Counter";
-
-
 const Page = () => {
-const [movies, setMovies] = useState(movie_datas)
-const handleDeleteBtn = (movieId) => {
+  const [movies, setMovies] = useState(movie_datas)
+  const [count, setCount] = useState({});
+  const handleDeleteBtn = (movieId) => {
     const updatedMovies = movies.filter(movie => movie.id !== movieId);
     setMovies(updatedMovies);
   };
-
-
-const [count, setCount] = useState([]);
-const handleLike=(moviesId)=>{
-  setCount((prevMovies)=>
-    prevMovies.map((runu)=>
-      runu.id === moviesId ?{...runu,likes:runu.likes + 1}  :runu
-    )
-  )
-}
-const handleDislike=(moviesId)=>{
-  setCount((prevMovies)=>
-    prevMovies.map((runu)=>
-      runu .id ===moviesId ? {...runu,dislikes:runu.dislikes} :runu
-    )
-  )
-
-}
-
-// const increment = (id) => {
-//     const newcount={...count}
-//       setCount();
-//     };
-// const decrement = (id) => {
-// const newcount={...count}
-//     setCount();
-//     }
-//   };
-
-
+  function likeClick(id){
+  const updatevote={...count}
+    if (updatevote[id]== undefined){
+      updatevote[id]=1
+    }
+    else{
+      updatevote[id]+=1
+    }
+    setCount(updatevote)
+  }
+  function diclikeClick(id){
+  const updatevote={...count}
+    if (updatevote[id]== undefined){
+      updatevote[id]=-1
+    }
+    else{
+      updatevote[id]-=1
+    }setCount(updatevote)
+  }
+  const shortItem=movies.sort((a,b)=>{
+    const voteA=count[a.id] || 0;
+    const voteB=count[b.id] || 0;
+    return voteB-voteA;
+  
+  })
   return (
     <div>
         <Header/>
@@ -54,17 +47,12 @@ const handleDislike=(moviesId)=>{
                     desc={movie.desc}
                     image={movie.img}
                     year={movie.year}
-                    vote={movie.count}
+                    vote={count[movie.id]}
+                    onClickLike={()=>likeClick(movie.id)}
+                    onClickDislike={()=>diclikeClick(movie.id)}
                     onDelete={() => handleDeleteBtn(movie.id)}
-                />
-                
-            ))}
-            
-            {/* {runu.map((hlo)=>
-              Likes={hlo.likes}
-            )} */}
-
-           
+                />               
+            ))}      
         <Movie_add/>
         <Footer/>
     </div>  

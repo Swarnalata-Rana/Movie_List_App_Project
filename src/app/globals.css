@@ -97,7 +97,7 @@
   font-size:12px;
   margin-top:12px;
 }
-.count_dlt{
+.delete_like_dislike_row{
   display:flex;
   width:1000px;
   justify-content:space-between;
@@ -227,7 +227,7 @@
   color:white;
   background:#272734;
 }
-.like{
+.likebtn{
   float: left;
 }
 .count{

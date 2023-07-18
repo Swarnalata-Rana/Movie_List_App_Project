@@ -14,12 +14,14 @@ const Movie_row = (props) => {
                     <p className='year'>{props.year}</p>
                     <h3 className='desr1'>Description</h3>
                     <p className='desr2'>{props.desc}</p>
-                    <p className='desr2'>{props.count}</p>
-
-
-                    {/* <div className='vote'>{props.vote}</div> */}
-                    <div className='count_dlt'>
-                        <div className='like_diclike_row'><Counter/></div>
+                    <div className='delete_like_dislike_row'>
+                        <div className='like_diclike_row'>
+                            <Counter 
+                                onClickLike={props.onClickLike}
+                                onClickDislike={props.onClickDislike}
+                                vote={props.vote}
+                            />
+                        </div>
                         <div className='delete'>
                             <DeleteComponent
                                 onclick={props.onDelete}
