@@ -13,7 +13,8 @@ const Page = () => {
     const updatedMovies = movies.filter(movie => movie.id !== movieId);
     setMovies(updatedMovies);
   };
-  function likeClick(id){
+
+  function likeBtn(id){
   const updatevote={...count}
     if (updatevote[id]== undefined){
       updatevote[id]=1
@@ -23,7 +24,8 @@ const Page = () => {
     }
     setCount(updatevote)
   }
-  function diclikeClick(id){
+
+  function diclikeBtn(id){
   const updatevote={...count}
     if (updatevote[id]== undefined){
       updatevote[id]=-1
@@ -32,12 +34,13 @@ const Page = () => {
       updatevote[id]-=1
     }setCount(updatevote)
   }
+
   const shortItem=movies.sort((a,b)=>{
     const voteA=count[a.id] || 0;
     const voteB=count[b.id] || 0;
     return voteB-voteA;
-  
   })
+
   return (
     <div>
         <Header/>
@@ -48,8 +51,8 @@ const Page = () => {
                     image={movie.img}
                     year={movie.year}
                     vote={count[movie.id]}
-                    onClickLike={()=>likeClick(movie.id)}
-                    onClickDislike={()=>diclikeClick(movie.id)}
+                    onClickLike={()=>likeBtn(movie.id)}
+                    onClickDislike={()=>diclikeBtn(movie.id)}
                     onDelete={() => handleDeleteBtn(movie.id)}
                 />               
             ))}      

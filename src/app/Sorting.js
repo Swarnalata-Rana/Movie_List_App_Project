@@ -1,9 +1,12 @@
-import React from 'react'
-
-const Sorting = () => {
+import React from 'react';
+const Button = () => {
+  const handleClick = () => {
+    // console.log('Button clicked!');
+  };
   return (
-    <div>Sorting</div>
-  )
-}
-
-export default Sorting
+    <>
+    <button onClick={handleClick}>Click Me</button>
+    </>
+  );
+};
+export default Button;
