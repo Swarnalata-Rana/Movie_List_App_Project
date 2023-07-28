@@ -6,6 +6,7 @@ import Movie_add from "@/Movie_add";
 import React, { useState } from 'react';
 import {movie_datas} from "./data.js";
 import Movie_row from "./Movie_row";
+import New_movie from "./New_movie";
 const Page = () => {
   const [movies, setMovies] = useState(movie_datas)
   const [count, setCount] = useState({});
@@ -32,7 +33,8 @@ const Page = () => {
     }
     else{
       updatevote[id]-=1
-    }setCount(updatevote)
+    }
+    setCount(updatevote)
   }
 
   const shortItem=movies.sort((a,b)=>{
@@ -55,9 +57,10 @@ const Page = () => {
                     onClickDislike={()=>diclikeBtn(movie.id)}
                     onDelete={() => handleDeleteBtn(movie.id)}
                 />               
-            ))}      
+            ))}    
+            <New_movie/>  
         <Movie_add/>
-        <Footer/>
+        {/* <Footer/> */}
     </div>  
   );
 };
