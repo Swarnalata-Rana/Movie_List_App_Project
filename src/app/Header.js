@@ -22,7 +22,9 @@ const Header = () => {
         <div className='row4'></div>
         <div className='row5'></div>
         <div className='row6'>
-            <div className='clo5'>Watch</div>
+            <div className='clo5'>
+                <div className='watch'>Watch</div>
+            </div>
         </div>
         <div className='row7'></div>
     </div>

@@ -2,11 +2,11 @@
 import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
-import Movie_add from "@/Movie_add";
 import React, { useState } from 'react';
 import {movie_datas} from "./data.js";
 import Movie_row from "./Movie_row";
 import New_movie from "./New_movie";
+import FormsComponent from "./FormsComponent";
 const Page = () => {
   const [movies, setMovies] = useState(movie_datas)
   const [count, setCount] = useState({});
@@ -14,7 +14,6 @@ const Page = () => {
     const updatedMovies = movies.filter(movie => movie.id !== movieId);
     setMovies(updatedMovies);
   };
-
   function likeBtn(id){
   const updatevote={...count}
     if (updatevote[id]== undefined){
@@ -36,7 +35,6 @@ const Page = () => {
     }
     setCount(updatevote)
   }
-
   const shortItem=movies.sort((a,b)=>{
     const voteA=count[a.id] || 0;
     const voteB=count[b.id] || 0;
@@ -59,8 +57,8 @@ const Page = () => {
                 />               
             ))}    
             <New_movie/>  
-        <Movie_add/>
-        {/* <Footer/> */}
+            {/* <FormsComponent/> */}
+        <Footer/>
     </div>  
   );
 };
