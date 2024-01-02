@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import React, { useState } from 'react';
 import {movie_datas} from "./data.js";
 import Movie_row from "./Movie_row";
-import New_movie from "./New_movie";
+// import New_movie from "./New_movie";
 import FormsComponent from "./FormsComponent";
 const Page = () => {
   const [movies, setMovies] = useState(movie_datas)
@@ -56,7 +56,7 @@ const Page = () => {
                     onDelete={() => handleDeleteBtn(movie.id)}
                 />               
             ))}    
-            <New_movie/>  
+            {/* <New_movie/>   */}
             {/* <FormsComponent/> */}
         <Footer/>
     </div>  

@@ -2,11 +2,11 @@
 import FormsComponent from '@/app/FormsComponent';
 import React, { useState } from 'react'
 const New_movie = () => {
-    const [isFormVisible,setIsFormVisible]=useState(false);
+    
+//     const [isFormVisible,setIsFormVisible]=useState(false);
+//     const handleButttonClick=()=>{
+//         setIsFormVisible(prevState => ! prevState);
 
-    const handleButttonClick=()=>{
-        setIsFormVisible(prevState => ! prevState);
-    }
   return (
     <>
         <div className='new_movie_main'>
@@ -16,10 +16,10 @@ const New_movie = () => {
                 <div className='add_movie'>Add A New Movie</div>
                 <p className='movie_p'>To add a movie you have to fill a form. The added movie will appear in the list above</p>
             </div>
-            <div className='new_movie'>
+            {/* <div className='new_movie'>
                 <button className='movie_plus' onClick={handleButttonClick}>New Movie +</button>
                 {isFormVisible && <FormsComponent/>}
-            </div> 
+            </div>  */}
             {/* <div className='row14'></div>
             <div className='row15'></div>
             <div className='row16'></div>
@@ -28,4 +28,4 @@ const New_movie = () => {
     </>
     )
 }
-export default New_movie
+export default New_movie;
